@@ -17,8 +17,5 @@ use Psy\TabCompletion\Matcher\FunctionsMatcher;
 
 Route::get('/', [PostController::class, 'show']);
 
-Route::get('/post', function () {
-    return view('post', [
-        'title' => 'Post'
-    ]);
-});
+
+Route::get('/post/{post:id}', [PostController::class, 'index']);

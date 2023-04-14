@@ -3,17 +3,22 @@
 @section('container')
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-7 offset-md-1">
-                <div class="card">
-                    <div class="card-body">
-                        <p>by munajar 2 hours ago</p>
-                        <a href="/post" class="text-decoration-none text-dark">
-                            <h5 class="card-title">Special title treatment</h5>
-                        </a>
-                        <p>in nature</p>
+            @foreach ($posts as $post)
+                <div class="col-md-7 offset-md-1 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="fw-light">by munajar 2 hours ago</p>
+                            <a href="/post/{{ $post->id }}" class="text-decoration-none text-dark">
+                                <h5 class="card-title">{{ $post->title }}</h5>
+                            </a>
+                            <a href="/post/{{ $post->id }}" class="text-decoration-none text-dark">
+                                <p class="fw-lighter">{{ $post->excerpt }}</p>
+                            </a>
+                            <p>in nature</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
             {{-- <div class="col-md-2">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
