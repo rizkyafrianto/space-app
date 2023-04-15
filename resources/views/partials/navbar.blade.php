@@ -20,7 +20,7 @@
                         aria-expanded="false">
                         Icon
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li><a class="dropdown-item" href="#">Sign Out</a></li>
                     </ul>

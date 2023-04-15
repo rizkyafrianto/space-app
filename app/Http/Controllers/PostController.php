@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Category;
 use Symfony\Component\Translation\CatalogueMetadataAwareInterface;
 
@@ -31,6 +32,15 @@ class PostController extends Controller
             'title' => 'tag',
             'posts' => $category->posts,
             'category' => $category->topic
+        ]);
+    }
+
+    public function user(User $user)
+    {
+        return view('user', [
+            'title' => 'user',
+            'posts' => $user->posts,
+            'user' => $user->name
         ]);
     }
 }

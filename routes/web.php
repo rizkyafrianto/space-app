@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Category;
 
 use Psy\TabCompletion\Matcher\FunctionsMatcher;
 
@@ -23,3 +22,5 @@ Route::get('/', [PostController::class, 'show']);
 Route::get('/post/{post:slug}', [PostController::class, 'index']);
 
 Route::get('/tag/{category:slug}', [PostController::class, 'category']);
+
+Route::get('/user/{user:username}', [PostController::class, 'user']);
