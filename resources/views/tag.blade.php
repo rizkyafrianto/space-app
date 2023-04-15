@@ -3,6 +3,9 @@
 @section('container')
     <div class="container mt-5">
         <div class="row">
+            <div class="col-md-7 offset-md-1 mb-3">
+                <h2> {{ $category }} </h2>
+            </div>
             @foreach ($posts as $post)
                 <div class="col-md-7 offset-md-1 mt-3">
                     <div class="card">

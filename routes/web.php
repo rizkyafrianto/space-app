@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
+
 use Psy\TabCompletion\Matcher\FunctionsMatcher;
 
 /*
@@ -17,5 +19,7 @@ use Psy\TabCompletion\Matcher\FunctionsMatcher;
 
 Route::get('/', [PostController::class, 'show']);
 
+// route binding that send data by id for file post
+Route::get('/post/{post:slug}', [PostController::class, 'index']);
 
-Route::get('/post/{post:id}', [PostController::class, 'index']);
+Route::get('/tag/{category:slug}', [PostController::class, 'category']);

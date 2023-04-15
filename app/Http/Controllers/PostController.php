@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-
+use App\Models\Category;
+use Symfony\Component\Translation\CatalogueMetadataAwareInterface;
 
 class PostController extends Controller
 {
@@ -21,6 +22,15 @@ class PostController extends Controller
         return view('post', [
             'title' => 'single post',
             'post' => $post
+        ]);
+    }
+
+    public function category(Category $category)
+    {
+        return view('tag', [
+            'title' => 'tag',
+            'posts' => $category->posts,
+            'category' => $category->topic
         ]);
     }
 }

@@ -4,15 +4,14 @@
     <div class="container mt-5">
         <div class="row justify-content-center mb-5">
             <div class="col-md-8">
+                <p>By: {{ $post->user->name }}</p>
                 <h2>{{ $post->title }}</h2>
-                <p>By: Munajar in web programming
-                </p>
                 <article class="my-3 fs-6">
                     {{ $post->body }}
                 </article>
-
-                <a href="/" class="d-block">Back to Posts</a>
-
+                <a href="/tag/{{ $post->category->slug }}" class="text-decoration-none text-dark fw-lighter">
+                    <p>{{ $post->category->topic }}</p>
+                </a>
             </div>
         </div>
     </div>
