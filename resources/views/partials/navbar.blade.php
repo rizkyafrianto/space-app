@@ -12,7 +12,8 @@
         <div class="navbar-collapse justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-pencil-square">
+                    <a class="nav-link active" aria-current="page" href="/profile/manage/create"><i
+                            class="bi bi-pencil-square">
                             Write</i></a>
                 </li>
                 <li class="nav-item">
@@ -23,7 +24,8 @@
                         aria-expanded="false"><i class="bi bi-person-circle"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="/profile">Profile</a>
+                        </li>
                         <li>
                             {{-- logout for user --}}
                             <form action="/logout" method="post">

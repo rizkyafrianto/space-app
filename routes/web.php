@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,11 +28,11 @@ Route::get('/welcome', function () {
 Route::get('/', [PostController::class, 'index'])->middleware('auth');
 
 // route binding that send data by id for file post
-Route::get('/post/{post:slug}', [PostController::class, 'show']);
+Route::get('/post/{post:slug}', [PostController::class, 'show'])->middleware('auth');
 
-Route::get('/tag/{category:slug}', [PostController::class, 'category']);
+Route::get('/tag/{category:slug}', [PostController::class, 'category'])->middleware('auth');
 
-Route::get('/user/{user:username}', [PostController::class, 'user']);
+Route::get('/user/{user:username}', [PostController::class, 'user'])->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
@@ -42,3 +43,8 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::post('/logout', [LoginController::class, 'logout']);
+
+// resource tak bisa melakukan route binding
+Route::resource('/profile', ProfileController::class)->middleware('auth');
+
+Route::resource('/profile/manage', ProfileController::class)->middleware('auth');
