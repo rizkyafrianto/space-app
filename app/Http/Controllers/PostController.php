@@ -10,15 +10,15 @@ use Symfony\Component\Translation\CatalogueMetadataAwareInterface;
 
 class PostController extends Controller
 {
-    public function show()
+    public function index()
     {
         return view('home', [
             'title' => 'space',
-            "posts" => Post::all()
+            'posts' => Post::latest()->filter(request(['search']))->get()
         ]);
     }
 
-    public function index(Post $post)
+    public function show(Post $post)
     {
         return view('post', [
             'title' => 'single post',

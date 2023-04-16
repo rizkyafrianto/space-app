@@ -10,6 +10,17 @@ class Post extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
+    // using query scope for fitur search and search by filters
+    public function scopeFilter($query, array $filters)
+    {
+        // using coalescing operator
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->when(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')->orWhere('body', 'like', '%' . $search . '%');
+            });
+        });
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

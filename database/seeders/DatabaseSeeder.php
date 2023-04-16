@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(5)->create();
 
-        \App\Models\Post::factory(20)->create();
+        \App\Models\Post::factory(100)->create();
 
         \App\Models\Category::create([
             'topic' => 'Web Programming',

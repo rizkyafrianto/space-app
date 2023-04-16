@@ -1,24 +1,25 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div class="row">
-            <div class="col-md-7 offset-md-1 mb-3">
-                <h2> {{ $user }} </h2>
+            <div class="col-sm-12 col-lg-7 mt-3 mb-3">
+                <h2>{{ $user }}</h2>
             </div>
             @foreach ($posts as $post)
-                <div class="col-md-7 offset-md-1 mt-3">
+                <div class="col-sm-12 col-lg-7 mt-3">
                     <div class="card">
                         <div class="card-body">
-                            <a href="/user/{{ $post->user->username }}" class="text-decoration-none text-dark">
-                                <p class="fw-light">by {{ $post->user->name }} 2 hours ago</p>
-                            </a>
-                            <a href="/post/{{ $post->slug }}" class="text-decoration-none text-dark">
-                                <h5 class="card-title">{{ $post->title }}</h5>
+                            <small>
+                                <p class="fw-light">{{ $post->created_at->diffForHumans() }}
+                                </p>
+                            </small>
+                            <a href="/{{ $post->slug }}" class="text-decoration-none text-dark">
+                                <h5 class="card-title fs-3 fw-bold">{{ $post->title }}</h5>
                                 <p class="fw-lighter mt-3">{{ $post->excerpt }}</p>
                             </a>
                             <a href="/tag/{{ $post->category->slug }}" class="text-decoration-none text-dark fw-lighter">
-                                <p>{{ $post->category->topic }}</p>
+                                <p class="mt-4 btn btn-tertiary">{{ $post->category->topic }}</p>
                             </a>
                         </div>
                     </div>

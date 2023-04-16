@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 use Psy\TabCompletion\Matcher\FunctionsMatcher;
@@ -16,11 +18,23 @@ use Psy\TabCompletion\Matcher\FunctionsMatcher;
 |
 */
 
-Route::get('/', [PostController::class, 'show']);
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
+
+
+Route::get('/', [PostController::class, 'index']);
 
 // route binding that send data by id for file post
-Route::get('/post/{post:slug}', [PostController::class, 'index']);
+Route::get('/post/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/tag/{category:slug}', [PostController::class, 'category']);
 
 Route::get('/user/{user:username}', [PostController::class, 'user']);
+
+Route::get('/login', [LoginController::class, 'index']);
+
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::get('/register', [RegisterController::class, 'index']);
