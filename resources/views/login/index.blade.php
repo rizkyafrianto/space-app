@@ -47,35 +47,59 @@
         </div>
     </nav>
 
-    <main class="form-signin w-100 mx-auto mt-5">
-        <form action="/login" method="post">
+    <div class="col-md-5">
+        <main class="form-signin w-100 mx-auto mt-5">
+
+            {{-- alert popup when regist succes --}}
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
+            {{-- alert popup when login failed --}}
+            @if (session()->has('loginError'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('loginError') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <h1 class="h3 mb-3 fw-normal text-center mt-5">Welcome back</h1>
 
-            <div class="form-floating my-2">
-                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                    id="email" placeholder="Email" required>
-                <label for="email">Email address</label>
-                @error('email')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="form-floating my-2">
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                <label for="password">Password</label>
-            </div>
+            {{-- form login --}}
+            <form action="/login" method="post">
+                {{-- token csrf --}}
+                @csrf
 
-            <button class="w-100 btn btn-lg btn-success mt-3" type="submit">Sign in</button>
-        </form>
+                <div class="form-floating my-2">
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                        id="email" placeholder="Email" required>
+                    <label for="email">Email address</label>
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-floating my-2">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                    <label for="password">Password</label>
+                </div>
 
-        {{-- click and redirect to regist page --}}
-        <small class="d-block text-center mt-2">Not already have accout?
-            <a href="/register">
-                Register now
-            </a>
-        </small>
-    </main>
+                <button class="w-100 btn btn-lg btn-success mt-3" type="submit">Sign in</button>
+            </form>
+
+            {{-- click and redirect to regist page --}}
+            <small class="d-block text-center mt-2">Not already have accout?
+                <a href="/register">
+                    Register now
+                </a>
+            </small>
+        </main>
+    </div>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

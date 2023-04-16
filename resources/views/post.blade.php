@@ -15,7 +15,6 @@
                     <p>{{ $post->category->topic }}</p>
                 </a>
             </div>
-            <a href="/login">login</a>
         </div>
     </div>
 @endsection
