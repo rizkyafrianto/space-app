@@ -24,7 +24,14 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                        <li>
+                            {{-- logout for user --}}
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-in-right"></i>
+                                    Sign Out</button>
+                            </form>
+                        </li>
                     </ul>
                 </li>
             </ul>
