@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Illuminate\Support\Str;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class ProfileController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('profile.index', [
+        return view('profile.manage.index', [
             'posts' => Post::where('user_id', auth()->user()->id)->get(),
             'title' => auth()->user()->username
         ]);
@@ -26,8 +28,8 @@ class ProfileController extends Controller
     public function create()
     {
         return view('profile.manage.create', [
-            'categories' => Category::all(),
-            'title' => auth()->user()->username
+            'title' => auth()->user()->username,
+            'categories' => Category::all()
         ]);
     }
 
@@ -36,7 +38,19 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'slug' => 'required|unique:posts',
+            'category_id' => 'required',
+            'body' => 'required'
+        ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+
+        Post::create($validatedData);
+
+        return redirect('profile/manage')->with('success', 'New post has been created');
     }
 
     /**
@@ -69,5 +83,12 @@ class ProfileController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    // library slugable  that change title to slug by event js
+    public function updateSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+        return response()->json(['slug' => $slug]);
     }
 }

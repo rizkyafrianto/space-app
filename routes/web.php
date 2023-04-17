@@ -44,7 +44,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::post('/logout', [LoginController::class, 'logout']);
 
-// resource tak bisa melakukan route binding
-Route::resource('/profile', ProfileController::class)->middleware('auth');
+Route::get('profile/manage/updateSlug', [ProfileController::class, 'updateSlug'])->middleware('auth');
 
+// route resource
 Route::resource('/profile/manage', ProfileController::class)->middleware('auth');

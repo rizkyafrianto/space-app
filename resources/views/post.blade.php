@@ -9,7 +9,7 @@
                 </a>
                 <h2>{{ $post->title }}</h2>
                 <article class="my-3 fs-6">
-                    {{ $post->body }}
+                    {!! $post->body !!}
                 </article>
                 <a href="/tag/{{ $post->category->slug }}" class="text-decoration-none text-dark fw-lighter">
                     <p>{{ $post->category->topic }}</p>

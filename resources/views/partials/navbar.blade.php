@@ -20,11 +20,12 @@
                     <a class="nav-link" href="#"><i class="bi bi-bell"></i></a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false"><i class="bi bi-person-circle"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
-                        <li><a class="dropdown-item" href="/profile">Profile</a>
+                        <li><a class="dropdown-item" href="/profile/manage"><i class="bi bi-person-fill"></i>
+                                Profile</a>
                         </li>
                         <li>
                             {{-- logout for user --}}
