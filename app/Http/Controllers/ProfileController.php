@@ -57,19 +57,24 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Post $profile)
     {
         return view('dashboard.profile.show', [
-            'post' => $post
+            'post' => $profile,
+            'title' => $profile->title
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $profile)
     {
-        //
+        return view('dashboard.profile.edit', [
+            'post' => $profile,
+            'categories' => Category::all(),
+            'title' => 'Editing'
+        ]);
     }
 
     /**
@@ -83,12 +88,11 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    // function destroy handle by PostController
-    // public function destroy(Post $post)
-    // {
-    //     Post::destroy($post->id);
-    //     return redirect('/dashboard/profile')->with('success', 'Post has been deleted');
-    // }
+    public function destroy(Post $profile)
+    {
+        Post::destroy($profile->id);
+        return redirect('/dashboard/profile')->with('success', 'Post has been deleted');
+    }
 
     // library slugable  that change title to slug by event js
     public function updateSlug(Request $request)

@@ -38,13 +38,11 @@ Route::get('/', [PostController::class, 'index'])->middleware('auth');
 // route binding that send data by id for file post
 Route::get('/{post:slug}', [PostController::class, 'show'])->middleware('auth');
 
-Route::get('/{post:slug}', [PostController::class, 'destroy']);
-
 Route::get('/tag/{category:slug}', [PostController::class, 'category'])->middleware('auth');
 
 Route::get('/user/{user:username}', [PostController::class, 'user'])->middleware('auth');
 
-Route::get('/dashboard/profile/updateSlug', [ProfileController::class, 'updateSlug'])->middleware('auth');
-
 // route resource
 Route::resource('/dashboard/profile', ProfileController::class)->middleware('auth');
+
+Route::get('/dashboard/profile/updateSlug', [ProfileController::class, 'updateSlug'])->middleware('auth');
