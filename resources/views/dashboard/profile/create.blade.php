@@ -6,7 +6,7 @@
     <div class="container-fluid mb-5">
         <div class="row  d-flex justify-content-center">
             <div class="col-sm-12 col-lg-6 mt-3">
-                <form method="post" action="/profile/manage">
+                <form method="post" action="/dashboard/profile">
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
@@ -61,7 +61,7 @@
         const slug = document.querySelector('#slug');
 
         title.addEventListener('change', function() {
-            fetch('/profile/manage/updateSlug?title=' + title.value)
+            fetch('/dashboard/profile/updateSlug?title=' + title.value)
                 .then(response => response.json())
                 .then(data => slug.value = data.slug)
         });

@@ -12,7 +12,7 @@
         <div class="navbar-collapse justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/profile/manage/create"><i
+                    <a class="nav-link active" aria-current="page" href="/dashboard/profile/create"><i
                             class="bi bi-pencil-square">
                             Write</i></a>
                 </li>
@@ -24,7 +24,7 @@
                         aria-expanded="false"><i class="bi bi-person-circle"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
-                        <li><a class="dropdown-item" href="/profile/manage"><i class="bi bi-person-fill"></i>
+                        <li><a class="dropdown-item" href="/dashboard/profile"><i class="bi bi-person-fill"></i>
                                 Profile</a>
                         </li>
                         <li>

@@ -23,28 +23,28 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 
-
-Route::get('/', [PostController::class, 'index'])->middleware('auth');
-
-// route binding that send data by id for file post
-Route::get('/post/{post:slug}', [PostController::class, 'show'])->middleware('auth');
-
-Route::get('/tag/{category:slug}', [PostController::class, 'category'])->middleware('auth');
-
-Route::get('/user/{user:username}', [PostController::class, 'user'])->middleware('auth');
+Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
 Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-
-Route::post('/register', [RegisterController::class, 'store']);
-
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('profile/manage/updateSlug', [ProfileController::class, 'updateSlug'])->middleware('auth');
+Route::get('/', [PostController::class, 'index'])->middleware('auth');
+
+// route binding that send data by id for file post
+Route::get('/{post:slug}', [PostController::class, 'show'])->middleware('auth');
+
+Route::get('/{post:slug}', [PostController::class, 'destroy']);
+
+Route::get('/tag/{category:slug}', [PostController::class, 'category'])->middleware('auth');
+
+Route::get('/user/{user:username}', [PostController::class, 'user'])->middleware('auth');
+
+Route::get('/dashboard/profile/updateSlug', [ProfileController::class, 'updateSlug'])->middleware('auth');
 
 // route resource
-Route::resource('/profile/manage', ProfileController::class)->middleware('auth');
+Route::resource('/dashboard/profile', ProfileController::class)->middleware('auth');

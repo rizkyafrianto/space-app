@@ -43,4 +43,10 @@ class PostController extends Controller
             'user' => $user->name
         ]);
     }
+
+    public function destroy(Post $post)
+    {
+        Post::destroy($post->id);
+        return redirect('/dashboard/profile');
+    }
 }

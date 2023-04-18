@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -16,8 +17,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('profile.manage.index', [
-            'posts' => Post::where('user_id', auth()->user()->id)->get(),
+        return view('dashboard.profile.index', [
+            'posts' => Post::latest()->where('user_id', auth()->user()->id)->get(),
             'title' => auth()->user()->username
         ]);
     }
@@ -27,7 +28,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('profile.manage.create', [
+        return view('dashboard.profile.create', [
             'title' => auth()->user()->username,
             'categories' => Category::all()
         ]);
@@ -50,15 +51,17 @@ class ProfileController extends Controller
 
         Post::create($validatedData);
 
-        return redirect('profile/manage')->with('success', 'New post has been created');
+        return redirect('/dashboard/profile')->with('success', 'New post has been created');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+        return view('dashboard.profile.show', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -80,10 +83,12 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    // function destroy handle by PostController
+    // public function destroy(Post $post)
+    // {
+    //     Post::destroy($post->id);
+    //     return redirect('/dashboard/profile')->with('success', 'Post has been deleted');
+    // }
 
     // library slugable  that change title to slug by event js
     public function updateSlug(Request $request)

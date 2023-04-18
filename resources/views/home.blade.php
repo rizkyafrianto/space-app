@@ -12,9 +12,9 @@
                                     <p class="fw-light">by {{ $post->user->name }} {{ $post->created_at->diffForHumans() }}
                                     </p>
                                 </a></small>
-                            <a href="/post/{{ $post->slug }}" class="text-decoration-none text-dark">
+                            <a href="/{{ $post->slug }}" class="text-decoration-none text-dark">
                                 <h5 class="card-title fs-3 fw-bold">{{ $post->title }}</h5>
-                                <p class="fw-lighter mt-3">{{ $post->excerpt }}</p>
+                                <p class="fw-lighter mt-3">{!! $post->excerpt !!}</p>
                             </a>
                             <a href="/tag/{{ $post->category->slug }}" class="text-decoration-none text-dark fw-lighter">
                                 <p class="mt-4 btn btn-tertiary">{{ $post->category->topic }}</p>
