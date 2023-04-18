@@ -42,7 +42,7 @@ Route::get('/tag/{category:slug}', [PostController::class, 'category'])->middlew
 
 Route::get('/user/{user:username}', [PostController::class, 'user'])->middleware('auth');
 
+Route::get('/dashboard/profile/updateSlug', [ProfileController::class, 'updateSlug'])->middleware('auth');
+
 // route resource
 Route::resource('/dashboard/profile', ProfileController::class)->middleware('auth');
-
-Route::get('/dashboard/profile/updateSlug', [ProfileController::class, 'updateSlug'])->middleware('auth');

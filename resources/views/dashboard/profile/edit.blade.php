@@ -7,6 +7,7 @@
       <div class="row  d-flex justify-content-center">
          <div class="col-sm-12 col-lg-6 mt-3">
             <form method="post" action="/dashboard/profile/{{ $post->slug }}">
+               @method('put')
                @csrf
                {{-- title input --}}
                <div class="mb-3">
@@ -18,7 +19,7 @@
                   @enderror
                </div>
                {{-- Slug input --}}
-               <div class="mb-3" style="display:none;">
+               <div class="mb-3">
                   <label for="slug" class="form-label">Auto generate slug</label>
                   <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
                      name="slug" readonly required value="{{ old('slug', $post->slug) }}">
