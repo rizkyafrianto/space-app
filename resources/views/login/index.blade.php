@@ -40,7 +40,7 @@
 <body>
    <nav class="navbar navbar-expand-sm bg-body-tertiary">
       <div class="container">
-         <a class="navbar-brand fs-4" href="/"><i class="bi bi-medium"></i> Space</a>
+         <a class="navbar-brand fs-4" href="/"><i class="bi bi-rocket-takeoff"></i> Space</a>
          <div class="navbar-nav">
             <a class="nav-link" href="/register">Get Started</a>
          </div>

@@ -4,7 +4,7 @@
    <div class="container mt-5 mb-5">
       <div class="row">
          @foreach ($posts as $post)
-            <div class="col-sm-12 col-lg-7 mt-3">
+            <div class="col-sm-12 col-lg-8 mt-3">
                <div class="card">
                   <div class="card-body">
                      <small>
@@ -16,9 +16,12 @@
                         <h5 class="card-title fs-3 fw-bold">{{ $post->title }}</h5>
                         <p class="fw-lighter mt-3">{!! $post->excerpt !!}</p>
                      </a>
-                     <a href="/tag/{{ $post->category->slug }}" class="text-decoration-none text-dark fw-lighter">
-                        <p class="mt-4 btn btn-tertiary">{{ $post->category->topic }}</p>
-                     </a>
+                     <div class="d-flex justify-content-between mt-3">
+                        <a href="/tag/{{ $post->category->slug }}" class="text-decoration-none text-dark fw-lighter">
+                           <span>{{ $post->category->topic }}</span>
+                        </a>
+                        @include('partials.dotbutton')
+                     </div>
                   </div>
                </div>
             </div>

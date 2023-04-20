@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-sm bg-body-tertiary">
    <div class="container-fluid">
-      <a class="navbar-brand" href="/"><i class="bi bi-medium"></i></a>
+      <a class="navbar-brand" href="/"><i class="bi bi-rocket-takeoff"></i></a>
 
       {{-- fitur search --}}
       <form action="/" class="d-flex">
-         <input type="text" class="form-control me-2 d-flex" name="search" value="{{ request('search') }}"
-            autocomplete="off" placeholder="Search...">
+         <input type="text" class="form-control me-2" name="search" value="{{ request('search') }}" autocomplete="off"
+            placeholder="Search...">
          <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
 

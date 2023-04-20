@@ -3,7 +3,7 @@
 @section('container')
    <div class="container mt-5">
       <div class="row justify-content-center mb-5">
-         <div class="col-md-8">
+         <div class="col-sm-12 col-md-12 col-lg-8">
             <a href="/user/{{ $post->user->username }}" class="text-decoration-none text-dark">
                <p class="fw-light">by {{ $post->user->name }} {{ $post->created_at->diffForHumans() }}</p>
             </a>

@@ -18,9 +18,12 @@
                         <h5 class="card-title fs-3 fw-bold">{{ $post->title }}</h5>
                         <p class="fw-lighter mt-3">{!! $post->excerpt !!}</p>
                      </a>
-                     <a href="/tag/{{ $post->category->slug }}" class="text-decoration-none text-dark fw-lighter">
-                        <p class="mt-4 btn btn-tertiary">{{ $post->category->topic }}</p>
-                     </a>
+                     <div class="d-flex justify-content-between mt-3">
+                        <a href="/tag/{{ $post->category->slug }}" class="text-decoration-none text-dark fw-lighter">
+                           <span>{{ $post->category->topic }}</span>
+                        </a>
+                        @include('partials.dotbutton')
+                     </div>
                   </div>
                </div>
             </div>

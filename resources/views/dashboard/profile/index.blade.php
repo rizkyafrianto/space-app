@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('container')
    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">Icon {{ auth()->user()->name }}</h1>
+      <h1 class="h2"><i class="bi bi-person-circle"></i> {{ auth()->user()->name }}</h1>
    </div>
 
    {{-- alert pop up when regist success --}}
@@ -15,7 +15,7 @@
    <div class="container mt-5 mb-5">
       <div class="row">
          @foreach ($posts as $post)
-            <div class="col-sm-12 col-lg-7 mt-3">
+            <div class="col-sm-12 col-lg-8 mt-3">
                <div class="card">
                   <div class="card-body">
                      <small>
@@ -24,7 +24,6 @@
                      <a href="/dashboard/profile/{{ $post->slug }}" class="text-decoration-none text-dark">
                         <h5 class="card-title fs-3 fw-bold">{{ $post->title }}</h5>
                         <p class="fw-lighter mt-3">{!! $post->excerpt !!}</p>
-                     </a>
                      </a>
                      <div class="d-flex justify-content-between mt-3">
                         <a href="/tag/{{ $post->category->slug }}" class="text-decoration-none text-dark fw-lighter">
