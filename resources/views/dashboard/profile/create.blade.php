@@ -6,8 +6,9 @@
    <div class="container-fluid mb-5">
       <div class="row  d-flex justify-content-center">
          <div class="col-sm-12 col-lg-6 mt-3">
-            <form method="post" action="/dashboard/profile">
+            <form method="post" action="/dashboard/profile" enctype="multipart/form-data">
                @csrf
+               {{-- Title input --}}
                <div class="mb-3">
                   <label for="title" class="form-label">Title</label>
                   <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
@@ -39,15 +40,21 @@
                      @endforeach
                   </select>
                </div>
+               {{-- Image input --}}
+               <div class="mb-3">
+                  <label for="image" class="form-label">Image</label>
+                  <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
+                     name="image">
+                  @error('image')
+                     <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+               </div>
                {{-- body input --}}
                <div class="mb-3">
                   <label for="body" class="form-label">Create your article here</label>
                   <input id="body" type="hidden" name="body" value="{{ old('body') }}">
                   <trix-editor input="body" class="form-control @error('body') is-invalid @enderror">
                   </trix-editor>
-                  @error('body')
-                     {{ $messsage }}
-                  @enderror
                </div>
                <button class="w-100 btn btn-lg btn-success" type="submit">Publish</button>
             </form>

@@ -22,6 +22,10 @@
                         <p class="fw-light">{{ $post->created_at->diffForHumans() }}</p>
                      </small>
                      <a href="/dashboard/profile/{{ $post->slug }}" class="text-decoration-none text-dark">
+                        <div class="mb-3">
+                           <img src="{{ asset('storage/' . $post->image) }} " class="card-img-top" alt=""
+                              style="height: 10rem; width:auto;">
+                        </div>
                         <h5 class="card-title fs-3 fw-bold">{{ $post->title }}</h5>
                         <p class="fw-lighter mt-3">{!! $post->excerpt !!}</p>
                      </a>
