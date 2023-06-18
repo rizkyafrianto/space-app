@@ -26,7 +26,9 @@
 
    @include('partials.navbar')
 
-   @yield('container')
+   <div class="container-fluid my-5 px-3">
+      @yield('container')
+   </div>
 
 
    {{-- paginate using method links() laravel

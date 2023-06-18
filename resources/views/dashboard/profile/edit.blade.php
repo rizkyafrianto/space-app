@@ -6,7 +6,7 @@
    <div class="container-fluid mb-5">
       <div class="row  d-flex justify-content-center">
          <div class="col-sm-12 col-lg-6 mt-3">
-            <form method="post" action="/dashboard/profile/{{ $post->slug }}">
+            <form method="post" action="/dashboard/profile/{{ $post->slug }}" enctype="multipart/form-data">
                @method('put')
                @csrf
                {{-- title input --}}
@@ -19,7 +19,7 @@
                   @enderror
                </div>
                {{-- Slug input --}}
-               <div class="mb-3">
+               <div class="mb-3" style="display:none;">
                   <label for="slug" class="form-label">Auto generate slug</label>
                   <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
                      name="slug" readonly required value="{{ old('slug', $post->slug) }}">
@@ -40,6 +40,25 @@
                         @endif
                      @endforeach
                   </select>
+               </div>
+               {{-- Image input --}}
+               <div class="mb-3">
+                  <label for="image" class="form-label">Update image</label>
+                  {{-- case if for preview old image --}}
+                  <input type="hidden" name="oldImage" value="{{ $post->image }}">
+                  @if ($post->image)
+                     <div>
+                        <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid img-preview col-sm-5 mb-3">
+                     </div>
+                  @else
+                     <img class="img-fluid img-preview col-sm-5 mb-3">
+                  @endif
+                  {{-- case for input image --}}
+                  <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
+                     name="image" onchange="previewImage()">
+                  @error('image')
+                     <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
                </div>
                {{-- body input --}}
                <div class="mb-3">
@@ -72,5 +91,20 @@
       document.addEventListener('trix-file-accept', function(e) {
          e.preventDefault()
       });
+
+      // script for preview image
+      function previewImage() {
+         const image = document.querySelector('#image');
+         const imgPreview = document.querySelector('.img-preview');
+
+         imgPreview.style.display = 'block';
+
+         const oFReader = new FileReader();
+         oFReader.readAsDataURL(image.file[0]);
+
+         oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
+         }
+      }
    </script>
 @endsection
